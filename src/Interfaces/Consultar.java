@@ -22,8 +22,6 @@ public class Consultar extends javax.swing.JFrame {
     
     public void mostrar(Variables r,DatosJson s){
         DecimalFormat formato= new DecimalFormat("#.00");
-        System.out.println("Usando format: "+formato.format(r.getPrecompra()));
-        //tfskubuscar.setText(formato.format(r.getPrecompra()));
         tfskubuscar.setText(r.getSkuproduct());
         tfprecombuscar.setText(formato.format(r.getPrecompra()));
         tfpreventbuscar.setText(formato.format(r.getPreventa()));
@@ -287,7 +285,6 @@ public class Consultar extends javax.swing.JFrame {
     
     r= Conexion.getBuscarIdPrecio(id);
     s=Conexion.getBuscarIdStock(id);
-    System.out.println("aqui esta ya en clase consultar: "+r.getPrecompra()+" : "+r.getPreventa());
     if(r==null){
         }else{    
           mostrar(r,s);

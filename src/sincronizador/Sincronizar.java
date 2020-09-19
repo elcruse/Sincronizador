@@ -3,7 +3,6 @@ package sincronizador;
 
 
 import org.json.*;
-import java.io.FileWriter;
 import java.io.IOException;
 
 
@@ -33,14 +32,7 @@ public class Sincronizar {
        miArray.put(act);
        System.out.println(miArray);
        //act.put("Valores del Array: ",miArray);
-        try {
-            FileWriter file= new FileWriter("C:\\Users\\Jimmy\\Documents\\NetBeansProjects\\Sincronizador\\src\\conex\\DataOrigen.json");
-       file.write(miArray.toString());
-       file.flush();
-       file.close();
-        } catch (IOException e) {
-            
-        }
+        
            
     }
     

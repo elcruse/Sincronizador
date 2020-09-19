@@ -55,7 +55,7 @@ public static Variables getBuscarIdPrecio(int id){
         if(resultado.next()){
             id=resultado.getInt("idprecio");
         }
-        System.out.println("Consulta exitosa");
+        System.out.println("Conectando a Servidor");
     } catch (Exception e) {
         System.out.println("Error al ejecutar");
     }

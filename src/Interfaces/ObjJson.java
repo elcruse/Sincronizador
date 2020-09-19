@@ -42,7 +42,7 @@ private JSONArray array;
     System.out.println(e);
         }
     try {
-       FileWriter file= new FileWriter("C:\\Users\\Jimmy\\Documents\\NetBeansProjects\\Sincronizador\\src\\conex\\DataOrigen.json");
+       FileWriter file= new FileWriter("C:\\xampp\\htdocs\\ClientephpWoocomerce\\DataJson\\DataOrigen.json");
        file.write(array.toString());
        file.flush();
        file.close();

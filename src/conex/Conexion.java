@@ -1,7 +1,7 @@
 
 package conex;
 
-import Interfaces.Consultar;
+//import Interfaces.Consultar;
 import java.sql.*;
 
 public class Conexion {
@@ -26,9 +26,7 @@ conn = DriverManager.getConnection(url, login, password);
 if (conn != null)
          {
  System.out.println("Conexion establecida.");
- //st=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-//conn.close();
                }
 }
 catch(SQLException|ClassNotFoundException ex) {

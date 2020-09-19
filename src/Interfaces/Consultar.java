@@ -3,87 +3,31 @@ package Interfaces;
 import conex.Conexion;
 import conex.DatosJson;
 import conex.Variables;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.sql.Connection;
-import org.json.*;
+//import java.sql.Connection;
+import java.text.DecimalFormat;
+ 
 /**
  *
  * @author Jimmy
  */
 public class Consultar extends javax.swing.JFrame {
-    JSONArray array; 
-    JSONObject json;
+    
     Conexion conn;
+    public DatosJson s;
     public Variables r;
     public Consultar() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
     
-    public void mostrar(Variables r){
-        
+    public void mostrar(Variables r,DatosJson s){
+        DecimalFormat formato= new DecimalFormat("#.00");
+        System.out.println("Usando format: "+formato.format(r.getPrecompra()));
+        //tfskubuscar.setText(formato.format(r.getPrecompra()));
         tfskubuscar.setText(r.getSkuproduct());
-        tfprecombuscar.setText(Double.toString(r.getPrecompra()));
-        tfpreventbuscar.setText(Double.toString(r.getPreventa()));
-    }
-    public void mostrarstock(DatosJson s){
-        
-        txtSKUstock.setText(s.getSkustock());
+        tfprecombuscar.setText(formato.format(r.getPrecompra()));
+        tfpreventbuscar.setText(formato.format(r.getPreventa()));
         textstocktotal.setText(Integer.toString(s.getStockDisponible()));
-        
-    }
-    public void jsonobj1(Variables r){
-    try {
-         json=new JSONObject(r);
-         /*
-         json.put("sku",r.getSkuproduct());
-         json.put("price",r.getPrecompra());
-         json.put("regular_price",r.getPreventa());*/
-         //array=new JSONArray();
-         /*array.put(json.put("sku",r.getSkuproduct()));
-         array.put(json.put("price",r.getPrecompra()));
-         array.put(json.put("regular_price",r.getPreventa()));*/
-        //array= new JSONArray(json);
-        System.out.println(json);
-        //System.out.println(array);
-        } catch (JSONException e) {
-            System.out.println(e);
-        }
-    try {
-            FileWriter file= new FileWriter("C:\\Users\\Jimmy\\Documents\\NetBeansProjects\\Sincronizador\\src\\conex\\DataOrigen.json");
-       file.write(json.toString());
-       file.flush();
-       file.close();
-       System.out.println("Se envio archivo DataOrigen.json");
-        } catch (IOException e) {
-            
-        }
-    }
-    
-    public void jsonobj(DatosJson a){
-    try {
-        
-         json=new JSONObject(a);
-         //array= new JSONArray(json);
-         //JSONObject jsons=new JSONObject(s);
-            //String ruta=json.getString("0").concat("skuproduct");
-        System.out.println(json);
-        //System.out.println(array);
-       // System.out.println(json+" "+" "+ruta);    
-        } catch (JSONException e) {
-            System.out.println(e);
-        }
-    try {
-            FileWriter file= new FileWriter("C:\\Users\\Jimmy\\Documents\\NetBeansProjects\\Sincronizador\\src\\conex\\DataOrigen.json");
-       file.write(json.toString());
-       file.flush();
-       file.close();
-       System.out.println("Se envio archivo DataOrigen.json");
-        } catch (IOException e) {
-            
-        }
-    
     }
     
     /**
@@ -109,19 +53,16 @@ public class Consultar extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        textIDstock = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         textstocktotal = new javax.swing.JTextField();
-        btnbuscar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        txtSKUstock = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         btnWoocomerce = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jlmostrarconexion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -180,14 +121,6 @@ public class Consultar extends javax.swing.JFrame {
 
         jLabel8.setText("STOCK:");
 
-        jLabel9.setText("Ingresa Stock ID:");
-
-        textIDstock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textIDstockActionPerformed(evt);
-            }
-        });
-
         jLabel12.setText("Stock Total:");
 
         textstocktotal.addActionListener(new java.awt.event.ActionListener() {
@@ -196,26 +129,11 @@ public class Consultar extends javax.swing.JFrame {
             }
         });
 
-        btnbuscar.setText("Buscar");
-        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarActionPerformed(evt);
-            }
-        });
-
-        jLabel13.setText("PRECIO DE PRODUCTO");
+        jLabel13.setText("PRECIO DE PRODUCTO:");
 
         jLabel14.setText("RESULTADO:");
 
         jLabel15.setText("RESULTADO:");
-
-        jLabel16.setText("SKU Producto");
-
-        txtSKUstock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSKUstockActionPerformed(evt);
-            }
-        });
 
         jLabel17.setText("Woocommerce RestApi");
 
@@ -232,139 +150,119 @@ public class Consultar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(desconectarBoton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(196, 196, 196)
-                                .addComponent(jLabel10))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(227, 227, 227)
-                                .addComponent(conectarBoton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BotonBuscar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(tfskubuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textIDstock, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnbuscar))
-                                    .addComponent(txtSKUstock, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel15))))
-                        .addGap(0, 223, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(196, 196, 196)
+                        .addComponent(jLabel10))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(401, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(51, 51, 51))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tfprecombuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnWoocomerce)
-                        .addGap(74, 74, 74))
+                        .addGap(64, 64, 64))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(BotonBuscar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(164, 164, 164)
+                                .addComponent(jLabel1)
+                                .addGap(53, 53, 53)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(conectarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlmostrarconexion, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(desconectarBoton)
+                                .addComponent(jLabel17)))
+                        .addGap(40, 40, 40))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textstocktotal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel15))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(tfpreventbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel16)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textstocktotal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(tfskubuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
+                .addComponent(jlmostrarconexion)
+                .addGap(31, 31, 31)
                 .addComponent(conectarBoton)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
+                .addGap(7, 7, 7)
+                .addComponent(jLabel2)
+                .addGap(11, 11, 11)
+                .addComponent(jLabel13)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tfbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonBuscar))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(tfskubuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(btnWoocomerce))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
-                            .addComponent(tfprecombuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(24, 24, 24)
+                            .addComponent(tfprecombuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnWoocomerce)))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfpreventbuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(tfpreventbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(textIDstock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnbuscar))
-                .addGap(25, 25, 25)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(txtSKUstock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel15))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(textstocktotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(desconectarBoton))
+                .addGap(58, 58, 58)
+                .addComponent(desconectarBoton)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel10))
         );
 
         pack();
@@ -372,7 +270,11 @@ public class Consultar extends javax.swing.JFrame {
 
     private void conectarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conectarBotonActionPerformed
         conn=new Conexion();
-        Connection reg=conn.getConnection();
+        conn.getConnection();
+        if(conn!=null){
+            jlmostrarconexion.setText("Conexion Establecida.");
+        }
+        
     }//GEN-LAST:event_conectarBotonActionPerformed
 
     private void desconectarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desconectarBotonActionPerformed
@@ -384,12 +286,11 @@ public class Consultar extends javax.swing.JFrame {
     int id = Integer.parseInt(tfbuscar.getText());
     
     r= Conexion.getBuscarIdPrecio(id);
+    s=Conexion.getBuscarIdStock(id);
+    System.out.println("aqui esta ya en clase consultar: "+r.getPrecompra()+" : "+r.getPreventa());
     if(r==null){
-    
-    }else{
-        
-    mostrar(r);
-    jsonobj1(r);
+        }else{    
+          mostrar(r,s);
      }
     }//GEN-LAST:event_BotonBuscarActionPerformed
 
@@ -409,36 +310,17 @@ public class Consultar extends javax.swing.JFrame {
        
     }//GEN-LAST:event_tfpreventbuscarActionPerformed
 
-    private void textIDstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIDstockActionPerformed
-        
-    }//GEN-LAST:event_textIDstockActionPerformed
-
-    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-        // boton buscar stock
-        int id = Integer.parseInt(textIDstock.getText());
-    DatosJson s;    
-    s= Conexion.getBuscarIdStock(id);
-    if(s==null){
-
-    }else{
-    mostrarstock(s);
-    jsonobj(s);
-     }
-    }//GEN-LAST:event_btnbuscarActionPerformed
-
     private void textstocktotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textstocktotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textstocktotalActionPerformed
 
     private void btnWoocomerceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWoocomerceActionPerformed
         // se envia la consulta al archivo dataorigen 
-            
+        ObjJson objjson;
+        objjson=new ObjJson(r,s); 
+        objjson.JsonObj();
         
     }//GEN-LAST:event_btnWoocomerceActionPerformed
-
-    private void txtSKUstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSKUstockActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSKUstockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -478,7 +360,6 @@ public class Consultar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscar;
     private javax.swing.JButton btnWoocomerce;
-    private javax.swing.JButton btnbuscar;
     private javax.swing.JButton conectarBoton;
     private javax.swing.JButton desconectarBoton;
     private javax.swing.JLabel jLabel1;
@@ -487,21 +368,19 @@ public class Consultar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField textIDstock;
+    private javax.swing.JLabel jlmostrarconexion;
     private javax.swing.JTextField textstocktotal;
     private javax.swing.JTextField tfbuscar;
     private javax.swing.JTextField tfprecombuscar;
     private javax.swing.JTextField tfpreventbuscar;
     private javax.swing.JTextField tfskubuscar;
-    private javax.swing.JTextField txtSKUstock;
     // End of variables declaration//GEN-END:variables
 }

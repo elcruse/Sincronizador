@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package conex;
+
+
 
 /**
  *
@@ -12,11 +10,11 @@ package conex;
 public class Variables {
  
     private String skuproduct;
-    private double precompra;
-    private double preventa;
+    private float precompra;
+    private float preventa;
     
 
-    public Variables(String skuproduct, double precompra, double preventa) {
+    public Variables(String skuproduct, float precompra, float preventa) {
         
         this.skuproduct = skuproduct;
         this.precompra = precompra;
@@ -34,21 +32,23 @@ public class Variables {
         this.skuproduct = skuproduct;
     }
 
-    public double getPrecompra() {
+    public float getPrecompra() {
+        
         return precompra;
     }
 
-    public void setPrecompra(double precompra) {
+    public void setPrecompra(float precompra) {
          
         this.precompra = precompra;
         
     }
 
-    public double getPreventa() {
+    public float getPreventa() {
+        
         return preventa;
     }
 
-    public void setPreventa(double preventa) {
+    public void setPreventa(float preventa) {
         this.preventa = preventa;
     }
 

@@ -33,7 +33,14 @@ public class FormExcel extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jboton = new javax.swing.JButton();
-        cajatexto = new javax.swing.JTextField();
+        IdPedidocajatexto = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        fechacajatexto = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        Nomvendecajatex = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        totalcajatext = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,9 +53,29 @@ public class FormExcel extends javax.swing.JFrame {
             }
         });
 
-        cajatexto.addActionListener(new java.awt.event.ActionListener() {
+        IdPedidocajatexto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cajatextoActionPerformed(evt);
+                IdPedidocajatextoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("ID Pedido:");
+
+        jLabel2.setText("Fecha:");
+
+        fechacajatexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechacajatextoActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Nombre Vendedor:");
+
+        jLabel4.setText("Total:");
+
+        totalcajatext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalcajatextActionPerformed(evt);
             }
         });
 
@@ -57,23 +84,45 @@ public class FormExcel extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jboton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(cajatexto, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jboton)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(IdPedidocajatexto)
+                        .addComponent(fechacajatexto)
+                        .addComponent(Nomvendecajatex)
+                        .addComponent(totalcajatext, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(cajatexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IdPedidocajatexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(fechacajatexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(Nomvendecajatex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(totalcajatext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(jboton)
-                .addGap(68, 68, 68))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -96,24 +145,64 @@ public class FormExcel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cajatextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajatextoActionPerformed
+    private void IdPedidocajatextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdPedidocajatextoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cajatextoActionPerformed
+    }//GEN-LAST:event_IdPedidocajatextoActionPerformed
 
     private void jbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbotonActionPerformed
         Workbook libro=new HSSFWorkbook();
-        Sheet hoja= libro.createSheet("Hoja1");
+        Sheet hoja= libro.createSheet("Ordenes de Pedido.");
+        //crea la fila 1
         Row fila = hoja.createRow(0);
+        //crea la celda 1
         Cell celda= fila.createCell(0);
-        celda.setCellValue(cajatexto.getText());
-        String file="prueba.xls";
-        try (FileOutputStream out = new FileOutputStream(file)) {
+        //crea el encabezado 1
+        celda.setCellValue("Id Pedido");
+        //crea la celda 2
+        celda= fila.createCell(1);
+        //crea el encabezado 2
+        celda.setCellValue("Fecha");
+        //crea la celda 3
+        celda= fila.createCell(2);
+        //crea el encabezado 3
+        celda.setCellValue("Nombre Vendedor");
+        //crea la celda 4
+        celda= fila.createCell(3);
+        //crea el encabezado 3
+        celda.setCellValue("Total");
+        
+        
+        //Ahora crea la fila dos con los valores de las cajas de textos
+        fila = hoja.createRow(1);//fila 2
+        celda= fila.createCell(0);
+        celda.setCellValue(IdPedidocajatexto.getText());
+        //fila 1 celda 2
+        celda= fila.createCell(1);
+        celda.setCellValue(fechacajatexto.getText());
+        //fila 1 celda 3
+        celda= fila.createCell(2);
+        celda.setCellValue(Nomvendecajatex.getText());
+        //fila 1 celda 4
+        celda= fila.createCell(3);
+        celda.setCellValue(totalcajatext.getText());
+        
+        String rutaArchivo= System.getProperty("user.home")+"/Prueba1.xls";
+        //String file="prueba.xls";
+        try (FileOutputStream out = new FileOutputStream(rutaArchivo)) {
             libro.write(out);
         }
-        catch(IOException e){
+        catch (IOException e){
         System.err.println(e.getMessage());
         }
     }//GEN-LAST:event_jbotonActionPerformed
+
+    private void fechacajatextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechacajatextoActionPerformed
+      //aqui va la fecha
+    }//GEN-LAST:event_fechacajatextoActionPerformed
+
+    private void totalcajatextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalcajatextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalcajatextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,8 +240,15 @@ public class FormExcel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField cajatexto;
+    private javax.swing.JTextField IdPedidocajatexto;
+    private javax.swing.JTextField Nomvendecajatex;
+    private javax.swing.JTextField fechacajatexto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jboton;
+    private javax.swing.JTextField totalcajatext;
     // End of variables declaration//GEN-END:variables
 }

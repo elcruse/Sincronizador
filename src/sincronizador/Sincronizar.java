@@ -3,18 +3,15 @@ package sincronizador;
 
 
 
+import conex.JsonExcel;
 import conex.Variables;
 import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Iterator;
 import org.json.JSONObject;
 import org.json.JSONArray;
-import org.json.JSONException;
+
 
 
 
@@ -29,82 +26,25 @@ public class Sincronizar {
      */
     public static void main(String[] args) {
         JSONArray ordenes;
-        JSONObject objorden=new JSONObject();
+        JSONObject objorden;
         String respuesta= "";
         Variables v=null;
         float f=0;
+        String url = "http://localhost/ClientephpWoocomerce/index.php";
+        
+        /*
         //String url = "http://localhost/ClientephpWoocomerce/DataJson/DataOrigen.json";
 	String url = "http://localhost/ClientephpWoocomerce/index.php";	
 		try {
 			respuesta = peticionHttpGet(url);
-			System.out.println("Esto Viene de la Url: " + respuesta);
+			//System.out.println("Esto Viene de la Url: " + respuesta);
 		} catch (Exception e) {
 			// Manejar excepción
 			e.printStackTrace();
 		} 
-                objorden.put("Url",respuesta);
-                ordenes=new JSONArray();
-                //objorden.put("Valores Http",respuesta);
-                //objorden=new JSONObject("{\"RespuestaHttp\":\"[{\\\"regular_price\\\":\\\"75,83\\\",\\\"sku\\\":\\\"codX1\\\",\\\"stock_quantity\\\":300,\\\"sale_price\\\":\\\"81,85\\\"}]\"}");
-                //ordenes=new JSONArray("[{\"regular_price\":\"75,83\",\"sku\":\"codX1\",\"stock_quantity\":300,\"sale_price\":\"81,85\"}]");
-                ordenes.put(objorden);
-                int alg=ordenes.length();
-          
-                Object o=ordenes.get(0);
-                System.out.println("Esto es:"+o.toString());
-                System.out.println("Esto es: "+ordenes);
-                System.out.println("Esto es: "+alg);
-                
-                ordenes.put(respuesta);
                 
                 
-                //ordenes=objorden.getJSONArray("id");
-                
-                
-                //ordenes.put(respuesta);
-                
-                //objorden=(JSONObject)ordenes.get(0);
-                //String precom=objorden.getString("id");
-                //Object precomp=objorden.get("regular_price");
-                
-                
-                
-                
-                //float preventa=json.get("preventa");
-                
-                System.out.println("Esto es un Array: "+ordenes);
-                System.out.println("Esto es un objeto: "+objorden);
-                System.out.println("Esto es un objeto: "+objorden);
-                System.out.println("Esto es un objeto: "+objorden);
-                //System.out.println("Esto es Precio de compra con String: "+precom);
-                
-                
-                
-                
-                /*for (int i=0;i<ordenes.length();i++) {
-                    try {
-                        String a="";
-                        float c=0;
-                        float b=0;
-                        v=new Variables(a,b,c);
-                        //JSONObject obj1=(JSONObject)ordenes.get(i);
-                        //System.out.println(obj1.get(v.getPrecompra()));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                
-                }*/
-                /*try {
-       FileWriter file= new FileWriter("C:\\Users\\Jimmy\\Documents\\NetBeansProjects\\Sincronizador\\src\\conex\\DataOrigen.json");
-       file.write(ordenes.toString());
-       file.flush();
-       file.close();
-       System.out.println("Se envio archivo DataOrigen.json");
-        } 
-    catch (IOException e) {
-            
-        }*/
-                             
+                            
 	}
 
 	public static String peticionHttpGet(String urlParaVisitar) throws Exception {
@@ -129,9 +69,17 @@ public class Sincronizar {
 		return resultado.toString();
            
                 
-    }
+    }*/
         
-      
+                JsonExcel ur= new JsonExcel();
+                ur.Urlcon(url);
+                ur.getRecorrerArrayList();
+                JSONObject obj1=(JSONObject)ur.getCorr().get(0);
+                System.out.println("Primer array: "+obj1.getString("date_created"));
+                 
+                 
+        
+    }     
     
     
 }

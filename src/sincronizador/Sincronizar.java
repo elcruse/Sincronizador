@@ -1,4 +1,4 @@
-
+/*
 package sincronizador;
 
 
@@ -19,12 +19,13 @@ import org.json.JSONArray;
  *
  * @author Jimmy
  */
+/*
 public class Sincronizar {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         JSONArray ordenes;
         JSONObject objorden;
         String respuesta= "";
@@ -70,7 +71,7 @@ public class Sincronizar {
            
                 
     }*/
-        
+        /*
                 JsonExcel ur= new JsonExcel();
                 ur.Urlcon(url);
                 ur.getRecorrerArrayList();
@@ -82,4 +83,6 @@ public class Sincronizar {
     }     
     
     
-}
+}*/
+
+//ESTO ES PARA HACER PRUEBAS SOLAMENTE... EL PROGRAMA ARRANCA EN EL PAQUETE INTERFACES

@@ -3,7 +3,6 @@ package Interfaces;
 import conex.Conexion;
 import conex.DatosJson;
 import conex.Variables;
-//import java.sql.Connection;
 import java.text.DecimalFormat;
  
 /**
@@ -12,15 +11,16 @@ import java.text.DecimalFormat;
  */
 public class Consultar extends javax.swing.JFrame {
     
-    Conexion conn;
-    public DatosJson s;
-    public Variables r;
-    public Consultar() {
+    private Conexion conn;
+    private DatosJson s;
+    private Variables r;
+    
+    private Consultar() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
     
-    public void mostrar(Variables r,DatosJson s){
+    private void mostrar(Variables r,DatosJson s){
         DecimalFormat formato= new DecimalFormat("#.00");
         tfskubuscar.setText(r.getSkuproduct());
         tfprecombuscar.setText(formato.format(r.getPrecompra()));

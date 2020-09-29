@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Interfaces;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -126,6 +122,7 @@ public class FormExcel extends javax.swing.JFrame {
 
     private void jbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbotonActionPerformed
         Workbook libro=new HSSFWorkbook();
+        //aca empezamos a crear la tabla de excel
         Sheet hoja= libro.createSheet("Ordenes de Pedido.");
         //crea la fila 1
         Row fila = hoja.createRow(0);
@@ -149,7 +146,8 @@ public class FormExcel extends javax.swing.JFrame {
         String url = "http://localhost/ClientephpWoocomerce/index.php";
         carga.Urlcon(url);
         carga.getRecorrerArrayList();
-        //Ahora crea la fila dos con los valores de las cajas de textos
+        /////////////////////////////////////////////////////
+        //cargamos todos los datos del json traido de la pagina woocommerce
         for (int i = 0; i < carga.getCorr().size(); i++) {
             fila = hoja.createRow(i+1);//fila 2    
             JSONObject obj1=(JSONObject)carga.getCorr().get(i);

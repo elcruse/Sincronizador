@@ -161,7 +161,7 @@ public class FormExcel extends javax.swing.JFrame {
             celda.setCellValue(obj1.getString("total"));
         }
          
-        String rutaArchivo= System.getProperty("user.home")+"/Prueba.xls";
+        String rutaArchivo= System.getProperty("user.home")+"/Prueba3.xls";
         //String file="prueba.xls";
         try (FileOutputStream out = new FileOutputStream(rutaArchivo)) {
             libro.write(out);
